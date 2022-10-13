@@ -1,6 +1,7 @@
 package config
 
 import (
+	"docker-go/app/models"
 	"fmt"
 	"log"
 	"os"
@@ -29,7 +30,10 @@ func SetupDatabase() *gorm.DB {
 		log.Fatal("Failed Connect To Database")
 	}
 
-	fmt.Print("Success Connection")
+	var model = []interface{}{&models.User{}, &models.Order{}}
+
+	db.Migrator().DropTable(model...)
+	db.AutoMigrate(model...)
 
 	return db
 
