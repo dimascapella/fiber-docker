@@ -10,9 +10,7 @@ func main() {
 	app := fiber.New()
 
 	config.SetupDatabase()
-	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
-	})
+	config.SetupRoutes(app)
 
 	app.Listen(":3000")
 }

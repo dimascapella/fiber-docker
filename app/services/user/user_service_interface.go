@@ -6,9 +6,9 @@ import (
 )
 
 type UserService interface {
-	Store(user requests.UserCreateRequest) models.User
-	Update(user requests.UserUpdateRequest) models.User
+	Store(user requests.UserCreateRequest) (models.User, error)
+	Update(user requests.UserUpdateRequest) (models.User, error)
 	Delete(user models.User) error
-	Find(userId int) models.User
-	FindAll() []models.User
+	Find(userId int) (models.User, error)
+	FindAll() ([]models.User, error)
 }
